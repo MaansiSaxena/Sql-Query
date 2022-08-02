@@ -1,0 +1,67 @@
+create database e_commerce
+use e_commerce
+
+create table Products( id int primary key, name nvarchar(20), price int, Rating int )
+create table Customer(id int, C_name nvarchar(20), emailid nvarchar(20), phone_no numeric(20,0), address nvarchar(20) )
+create table Orders(id int, order_status nvarchar(20), mode nvarchar(10) )
+create table Account(id int, orderno int, cashback int)
+
+insert into Products values( 1, 'facewash', 299, 4.5)
+insert into Products values( 2, 'Scrub', 199, 4 )
+insert into Products values( 3, 'Mobile', 29999, 4.7)
+insert into Products values( 4, 'Grinder', 2909, 4.3)
+
+insert into Customer values ( 1, 'Mansi', 'mansi@gmail.com', 9873537394,'Aligarh')
+insert into Customer values ( 2, 'Shweta','shweta@gmail.com',8434998218, 'Lucknow')
+insert into Customer values ( 3, 'Arjit', 'arjit@gmail.com', 9631687787, 'Gurugram')
+insert into Customer values ( 4, 'Shivam','shivam@gmail.com',7143564867, 'Agra')
+
+insert into Orders values( 1, 'Confirm', 'COD')
+insert into Orders values( 2, 'in cart', 'Pending')
+insert into Orders values( 3, 'confirm', 'Gpay')
+insert into Orders values( 4, 'pending', 'Fail')
+
+insert into Account values( 1, 101,118)
+insert into Account values( 2, 102, 0)
+insert into Account values( 3, 103, 1500)
+insert into Account values( 4, 104, 0)
+
+--join 2 tables:--
+create view product_view
+as
+select name,price,order_status
+from Products as p
+inner join Orders as s
+on p.id = s.id
+
+select * from product_view
+
+--join 3 Tables:--
+create view customer_view
+as
+select C_name, rating, mode
+from Products as p
+inner join Orders as s
+on p.id = s.id 
+inner join Customer as c
+on c.id = s.id
+
+drop table Customer
+
+select * from customer_view
+
+drop view customer_view
+
+--join 4 tables together:--
+create view orders_view
+as
+select C_name, name, order_status, cashback
+from Products as p
+inner join Orders as s
+on p.id = s.id
+inner join Customer as c
+on c.id = s.id
+inner join Account as a
+on a.id = c.id
+
+select * from orders_view
