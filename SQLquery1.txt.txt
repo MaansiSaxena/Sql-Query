@@ -1,0 +1,36 @@
+create database bhavnacorp
+use bhavnacorp
+create table pers_details(id int primary key, name nvarchar(20), gender nvarchar(10), Maritial_Status nvarchar(15), phone_number varchar(10))
+
+insert into pers_details values (1,'Mansi','Female','single', 9760652776)
+insert into pers_details values (2,'Anjali','Female','single', 9763452776)
+insert into pers_details values (3,'Shivank','Male','single', 8760656876)
+insert into pers_details values (4,'Khyati','Female','single', 9457654976)
+
+select * from pers_details
+
+
+create table offi_details(id int, name nvarchar(20),nationality nvarchar(10), Courses_enrolled nvarchar(10), Address nvarchar(10))
+insert into offi_details values (1,'Mansi', 'Indian', 'net', 'Aligarh')
+insert into offi_details values (2,'Anjali', 'Indian', 'net', 'Noida')
+insert into offi_details values (3,'Shivank', 'Indian', 'Java', 'Delhi')
+insert into offi_details values (4,'Khyati', 'Indian', 'Java', 'Chandigarh')
+
+select * from offi_details
+
+
+create table sal_details(id int, name nvarchar(20),sal int , travell varchar(10), broadband varchar(10))
+insert into sal_details values (1,'Mansi', 19000, 1000, 1000)
+insert into sal_details values (2,'Anjali', 20000, 1001, 1000)
+insert into sal_details values (3,'Shivank', 21000, 1922, 1000)
+insert into sal_details values (4,'Khyati', 22000, 1638, 1000)
+
+select * from sal_details
+
+select avg(sal) as AVG_Salary from sal_details
+
+drop table sal_details
+
+
+select * from pers_details where name='Mansi'
+
